@@ -1,0 +1,103 @@
+<!--
+
+********************************************************************************
+
+WARNING:
+
+    DO NOT EDIT "alibaba-dragonwell/README.md"
+
+    IT IS AUTO-GENERATED
+
+    (from the other files in "alibaba-dragonwell/" combined with a set of templates)
+
+********************************************************************************
+
+-->
+
+-n 
+# Quick reference
+
+-	**Maintained by**:  
+	[Dragonwell](https://github.com/dragonwell-containers/dragonwell-containers)
+
+-	**Where to get help**:  
+	[Dragonwell Containers](https://github.com/dragonwell-containers/dragonwell-containers.git)
+
+# Supported tags and respective `Dockerfile` links
+
+**No supported tags**
+
+# Quick reference (cont.)
+
+-	**Where to file issues**:  
+	[GitHub](https://github.com/dragonwell-containers/dragonwell-containers/issues);
+
+-	**Supported architectures**: ([more info](https://github.com/docker-library/official-images#architectures-other-than-amd64))  
+	**No supported architectures**
+
+-	**Published image artifact details**:  
+	[repo-info repo's `repos/alibaba-dragonwell/` directory](https://github.com/docker-library/repo-info/blob/master/repos/alibaba-dragonwell) ([history](https://github.com/docker-library/repo-info/commits/master/repos/alibaba-dragonwell))  
+	(image metadata, transfer size, etc)
+
+-	**Image updates**:  
+	[official-images repo's `library/alibaba-dragonwell` label](https://github.com/docker-library/official-images/issues?q=label%3Alibrary%2Falibaba-dragonwell)  
+	[official-images repo's `library/alibaba-dragonwell` file](https://github.com/docker-library/official-images/blob/master/library/alibaba-dragonwell) ([history](https://github.com/docker-library/official-images/commits/master/library/alibaba-dragonwell))
+
+-	**Source of this description**:  
+	[docs repo's `alibaba-dragonwell/` directory](https://github.com/docker-library/docs/tree/master/alibaba-dragonwell) ([history](https://github.com/docker-library/docs/commits/master/alibaba-dragonwell))
+
+## Overview
+
+The images in this repository contain Alibaba Dragonwell binaries built by [JDK Team at Alibaba Cloud](https://github.com/alibaba/dragonwell8).
+
+# What is Alibaba Dragonwell ?
+
+Alibaba Dragonwell, as a downstream version of OpenJDK, is the OpenJDK implementation at Alibaba optimized for online e-commerce, financial, and logistics applications running on 100,000+ servers. Alibaba Dragonwell is the engine that runs these distributed Java applications in extreme scaling.
+
+# Images
+
+Currently, there are only JDK(Java Developer Kit)images, and the following architectures are now available:
+
+-      `amd64`, `arm64`
+
+
+# How to use this Image
+
+To run a pre-built jar file with the latest OpenJDK 11, use the following Dockerfile:
+
+```dockerfile
+FROM alibaba-dragonwell:11
+RUN mkdir /opt/app
+COPY japp.jar /opt/app
+CMD ["java", "-jar", "/opt/app/japp.jar"]
+```
+
+You can build and run the Docker Image as shown in the following example:
+
+```console
+docker build -t japp .
+docker run -it --rm japp
+```
+
+### Using a different base Image
+
+If you are using a distribution that we don't provide an image, you can copy the JDK using a similar Dockerfile to the
+one below:
+
+```dockerfile
+# Example
+FROM <base image>
+ENV JAVA_HOME=/opt/java/openjdk
+COPY --from=alibaba-dragonwell:11 $JAVA_HOME $JAVA_HOME
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+```
+
+# License
+
+Alibaba Dragonwell is released under the same open source license as OpenJDK, which is licensed under the GNU Public License version 2 with the Class Path Exception ([GPLv2 with CPE](https://openjdk.java.net/legal/gplv2+ce.html)).
+
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+Some additional license information which was able to be auto-detected might be found in [the `repo-info` repository's `alibaba-dragonwell/` directory](https://github.com/docker-library/repo-info/tree/master/repos/alibaba-dragonwell).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
